@@ -4,7 +4,7 @@
 #include <vector>
 //* funkicja, ki posodobila pozicije likov
 void Update (std::vector<Baraba> & vectBar,Player & player,std::vector<Staroselci> &vectStaro,std::vector <Ogenj> & vectOg,std::vector<Drevo> & vectDrev,int st_levla){
-    std::ofstream datao ("replay.bin",std::ios::binary | std::ios::out | std::ios::app);
+    std::ofstream datao ("replay.bin",std::ios::binary | std::ios::out | std::ios::app);//* zapisujemo pozicijo player-ja v player.bin
     player.Update();
     datao.write((char *)&player,sizeof(player));
     for(int i=0;i<vectOg.size();i++){ 

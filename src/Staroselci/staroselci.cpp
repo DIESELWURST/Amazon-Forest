@@ -58,20 +58,18 @@ void Staroselci:: Render(){
     int movementSpeed=25;
     int barabeCount=0;
     for(int i=0;i<vectBar.size();i++){ //s tem pogledamo katera baraba je najbližja
-        if((vectBar[i].getX()>=x-200 && vectBar[i].getX()<=x+200 )||( vectBar[i].getY()>=y-200 && vectBar[i].getY()<=y+200) ){ //* gledamo če je baraba oddaljena +- 200 z x-osi in y-osi
             if (abs(x-vectBar[i].getX())<min_x && abs(y-vectBar[i].getY())<min_y){ //* gledamo, če je razdalja do barabe manjša od radija Staroselcev
                 min_x=vectBar[i].getX();
                 min_y=vectBar[i].getY();
                 barabeCount++; //* tuki še hkrati gledamo. če je v radiju Staroselca več kot ena baraba
             }
-        }
+        
     }
     for(int i=0;i<vectOg.size();i++){ //s tem pogledamo kateri ogenj je najbližji (ognji so bolj pomembni, zato se bodo prvo napotili k njim)
-        if((vectOg[i].getX()>=x-200 && vectOg[i].getX()<=x+200 )|| (vectBar[i].getY()>=y-200 && vectBar[i].getY()<=y+200 )){
             if (abs(x-vectOg[i].getX())<min_x && abs(y-vectOg[i].getY())<min_y){
                 min_x=vectOg[i].getX();
                 min_y=vectOg[i].getY();
-            }
+            
         } else { //* s tem se bo Staroselec naključno premaknil nekam, če ničesar ni v njegovem view-u
             x+=(rand()%3-1)*movementSpeed;
             y+=(rand()%3-1)*movementSpeed;    

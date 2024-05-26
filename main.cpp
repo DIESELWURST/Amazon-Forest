@@ -12,6 +12,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
+#include <fstream>
 
 //* - Razlaga ukazov,funkcij,spremenljivk,pogojev
 //  - Razlaga zank,struktur,objektov 
@@ -46,6 +47,10 @@ int main(int argc, char** argv) {
     std::vector<Drevo> vectDrev(9);
     Drev.fillDrev(vectDrev);
     bool running = true;
+    bool replay=false;
+    if (st_levla<4){ //* če ni replay na začetku izvajanja odpremo datoteko, da bo lahko izrisali samo premike iz nazadnje igre
+        std::ofstream datao ("replay.bin",std::ios::binary);//*s tem ko beremo datoteko se izbriše vsebina datoteke
+    }
     while (running) { // while loop, ki samo preverja, če se je kej zgodil ( tuki posebi gleda če smo zaprl program)
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
@@ -59,10 +64,10 @@ int main(int argc, char** argv) {
             }
         }
         
-        if (st_levla < 4) {
+        if (st_levla<4) { //* če ne izberemo replay moda
             Update(vectBar, player, vectStaro, vectOg, vectDrev, st_levla);
             Render(vectBar, player, vectStaro, vectOg, st_Ognjev, vectDrev, st_levla);
-        } else {
+        } else { //* če se bo izvajal replay mode
             Render(vectBar, player, vectStaro, vectOg, st_Ognjev, vectDrev, st_levla);
             break;
         }
