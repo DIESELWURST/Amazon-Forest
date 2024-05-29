@@ -13,6 +13,7 @@
 #include <SDL2/SDL_image.h>
 #include <iostream>
 #include <fstream>
+#include <SDL2/SDL_ttf.h>
 
 //* - Razlaga ukazov,funkcij,spremenljivk,pogojev
 //  - Razlaga zank,struktur,objektov 
