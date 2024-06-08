@@ -2,7 +2,7 @@
 > BlockIntroduction Blaze Busters Amazon Rescue is a captivating game where players navigate various levels, using unique abilities to overcome challenges. Written in C++ with SDL, this game offers an engaging experience focusing on saving the Amazon forest.
 
 
-##  Gameplay Overview``
+##  Gameplay Overview
 
 -   Players navigate the jungle-themed levels, encountering indigenous allies, fires, and adversaries.
 -   Indigenous allies aid in extinguishing fires and defeating adversaries within their radius.
