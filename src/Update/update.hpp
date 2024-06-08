@@ -7,7 +7,8 @@
 #include "staroselci.hpp"
 #include "drevo.hpp"
 #include "ogenj.hpp"
+#include <SDL2/SDL.h>
 
-void Update(std::vector<Baraba>& vectBar, Player& player, std::vector<Staroselci>& vectStaro, std::vector<Ogenj>& vectOg, std::vector<Drevo>& vectDrev, int st_levla);
+void Update_Mobs(std::vector<Baraba>& vectBar, Player& player, std::vector<Staroselci>& vectStaro, std::vector<Ogenj>& vectOg, std::vector<Drevo>& vectDrev, int st_levla,Uint32 Cas_o,int SCREEN_HEIGHT,int SCREEN_WIDTH);
 
 #endif // UPDATE_HPP

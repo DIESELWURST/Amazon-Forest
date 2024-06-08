@@ -1,9 +1,7 @@
 #include "drevo.hpp"
 #include <SDL2/SDL_image.h>
 
-extern SDL_Renderer *globalRenderer; //* globalna spremenljivka za renderer
-extern int SCREEN_WIDTH;
-extern int SCREEN_HEIGHT;
+
 void Drevo:: fillDrev(std::vector<Drevo>&vectDrev){
     
    for(int i=0;i<vectDrev.size();i++){
@@ -37,7 +35,7 @@ void Drevo:: fillDrev(std::vector<Drevo>&vectDrev){
 
  }
  
-    void Drevo::Render(int i) {
+    void Drevo::Render(int i,SDL_Renderer* globalRenderer) {
     if (!je_posekan) return;
 
     const char * fileNames[] = {
@@ -64,10 +62,10 @@ void Drevo:: fillDrev(std::vector<Drevo>&vectDrev){
 
     SDL_Surface *drevSurface = IMG_Load(fileNames[i]);
     SDL_Texture *drev = SDL_CreateTextureFromSurface(globalRenderer, drevSurface);
-    SDL_Rect StaroDst = sizes[i];
+    SDL_Rect DrevDst = sizes[i];
 
     SDL_FreeSurface(drevSurface);
-    SDL_RenderCopy(globalRenderer, drev, NULL, &StaroDst);
+    SDL_RenderCopy(globalRenderer, drev, NULL, &DrevDst);
     SDL_DestroyTexture(drev);
 }
 

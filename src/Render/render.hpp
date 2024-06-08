@@ -7,7 +7,8 @@
 #include "staroselci.hpp"
 #include "drevo.hpp"
 #include "ogenj.hpp"
+#include <SDL2/SDL_image.h>
 
-void Render(std::vector<Baraba>& vectBar, Player& player, std::vector<Staroselci>& vectStaro, std::vector<Ogenj>& vectOg, int st_Ognjev, std::vector<Drevo>& vectDrev, int st_levla);
+void Render_Mobs(std::vector<Baraba>& vectBar, Player& player, std::vector<Staroselci>& vectStaro, std::vector<Ogenj>& vectOg, int st_Ognjev, std::vector<Drevo>& vectDrev, int st_levla,SDL_Renderer *renderer,int SCREEN_HEIGHT,int SCREEN_WIDTH);
 
 #endif // RENDER_HPP

@@ -8,10 +8,7 @@
 #include <fstream>
 
     
-extern SDL_Window *globalWindow; //* globalna spremenljivka za window + vse extern spremenljivke so v datoteki globals
-extern SDL_Renderer *globalRenderer; //* globalna spremenljivka za renderer
-extern int SCREEN_HEIGHT;
-extern int SCREEN_WIDTH;
+
 
 
 

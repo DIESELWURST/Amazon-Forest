@@ -1,9 +1,7 @@
 #include "staroselci.hpp"
 #include <time.h>
 #include <SDL2/SDL_image.h>
-extern SDL_Renderer *globalRenderer; //* globalna spremenljivka za renderer
-extern int SCREEN_WIDTH;
-extern int SCREEN_HEIGHT;
+
 void Staroselci :: fillStaro (std::vector<Staroselci>&vectStaro) {
     int spawnQuotient;//* s tem določemo na kateremu izmed 4 možnih spwanov se bo pojavil 1 staroselec
     for(std::vector<Staroselci>:: iterator it=vectStaro.begin();it!=vectStaro.end();it++){
@@ -31,7 +29,7 @@ bool Staroselci:: Borders (int minX, int maxX, int minY, int maxY)  {
     return Mobs::Borders (minX,maxX,minY,maxY);
  }
 
-void Staroselci:: Render(){
+void Staroselci:: Render(SDL_Renderer * globalRenderer){
     SDL_Surface *staroSurface=IMG_Load("assets/goodie.png");
     if(!staroSurface){
          printf("Error: Failed to load player image\nSDL_Image Error: '%s'\n", IMG_GetError());        
@@ -52,7 +50,7 @@ void Staroselci:: Render(){
     SDL_RenderCopy(globalRenderer, staro, NULL, &StaroDst);
     SDL_DestroyTexture(staro);
 }
- void Staroselci:: Update (std::vector<Baraba>& vectBar, std::vector<Ogenj>& vectOg, Player & player, std::vector<Staroselci>& vectStaro,int  st_staroselca){
+ void Staroselci:: Update (std::vector<Baraba>& vectBar, std::vector<Ogenj>& vectOg, Player & player, std::vector<Staroselci>& vectStaro,int  st_staroselca,int SCREEN_HEIGHT,int SCREEN_WIDTH){
     int min_x=vectBar[0].getX(); 
     int min_y=vectBar[0].getY();
     int movementSpeed=25;
@@ -99,6 +97,7 @@ void Staroselci:: Render(){
             if (abs(vectBar[i].getX()-x)< radius && abs(vectBar[i].getY()-y)< radius) { //* isto kot zgornja koda, ampak samo preverjamo za Staroselce
                  if(barabeCount>=2 && (abs(player.getX()-x)< radius && abs(player.getY()-y)< radius)) { //* preverjamo, če je 2+ barab v radiju in če je player
                     vectBar.erase(vectBar.begin()+i);//* če je izbrišemo eno barabo iz vectBar
+                    player.addTocke(10);
                  } else if (barabeCount>=2 && !(abs(player.getX()-x)< radius && abs(player.getY()-y)< radius)){//* preverjamo, če 2+ barab in ni playerja
                         vectStaro.erase(vectStaro.begin()+i); //* če sta izbrišemo enega staroselca iz vectStaro
                  } else  {

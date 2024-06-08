@@ -1,25 +1,22 @@
 #include "back.hpp"
 #include <SDL2/SDL_image.h>
 
-extern SDL_Window *globalWindow; //* globalna spremenljivka za window
-extern SDL_Renderer *globalRenderer; //* globalna spremenljivka za renderer
-extern int SCREEN_WIDTH;
-extern int SCREEN_HEIGHT;
 
-void Back:: Start(){
+void Back::Start( SDL_Renderer * renderer,SDL_Window * window, int SCREEN_HEIGHT, int SCREEN_WIDTH){
     //* SDL_window je samo nov tab, ki se odpre
-        globalWindow = SDL_CreateWindow("Blaze Busters: Amazon Rescue", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
-    if(!globalWindow){
+         window = SDL_CreateWindow("Blaze Busters: Amazon Rescue", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
+    if(! window){
         printf("Error: Failed to open window\nSDL Error: '%s'\n", SDL_GetError());
        
     }
     //*SDL_Renderer je pa dobesedno plac na katerega bomo risal
-        globalRenderer = SDL_CreateRenderer(globalWindow, -1, SDL_RENDERER_ACCELERATED );
-    if(!globalRenderer){
+         renderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED );
+    if(! renderer){
         printf("Error: Failed to create renderer\nSDL Error: '%s'\n", SDL_GetError());
     }  
 }
-void Back:: Render() {
+
+void Back:: Render(SDL_Renderer * globalRenderer,int SCREEN_HEIGHT,int SCREEN_WIDTH ) {
            //* surface samo predstavlja sliko v pomnilniku
     SDL_Surface *backingSurface = IMG_Load("assets/back.png");
     if(!backingSurface){
@@ -36,7 +33,7 @@ void Back:: Render() {
     SDL_Rect backingDst = {
         .x = 0, //* na katerem x-u bos postavu sliko
         .y = 0, //* na keretem y-u bos postavu sliko
-        .w = SCREEN_WIDTH, //* širina slike, ki jo bomo dodali                      
+        .w =  SCREEN_WIDTH, //* širina slike, ki jo bomo dodali                      
         .h =  SCREEN_HEIGHT,  //* višina slike, ki jo bomo dodali                     
     };
 

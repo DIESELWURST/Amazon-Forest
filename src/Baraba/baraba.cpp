@@ -3,9 +3,7 @@
 #include <time.h>
 #include <SDL2/SDL_image.h>
 
-extern SDL_Renderer *globalRenderer; //* globalna spremenljivka za renderer
-extern int SCREEN_WIDTH;
-extern int SCREEN_HEIGHT;
+
 
 void Baraba:: fillBaraba(std::vector<Baraba>&vectBar){
     srand(time(NULL));
@@ -28,7 +26,7 @@ bool Baraba:: Borders (int minX, int maxX, int minY, int maxY)  {
     return Mobs::Borders (minX,maxX,minY,maxY);
  }
 
-void Baraba:: Update (std::vector<Baraba>&vectBar,Player &player,std::vector<Drevo> &vectDrev,int count) {
+void Baraba:: Update (std::vector<Baraba>&vectBar,Player &player,std::vector<Drevo> &vectDrev,int count,int SCREEN_HEIGHT,int SCREEN_WIDTH) {
     int min_x=0; //* s tem gledamo ali je barabi bližji player ali katerkoli drevo
     int min_y=0;
     int movementSpeed=25;
@@ -71,10 +69,11 @@ void Baraba:: Update (std::vector<Baraba>&vectBar,Player &player,std::vector<Dre
        for(int i=0;i<vectBar.size();i++){
             if ((abs(vectBar[i].x-player.getX())< player.getRadius() && abs(vectBar[i].y-player.getY())< player.getRadius())){
                     vectBar.erase(vectBar.begin()+i); //* če sta player in 1 baraba sama izbiršemo barabo
+                    player.addTocke(10);
             }
        }
 }
-void Baraba:: Render () {
+void Baraba:: Render (SDL_Renderer* globalRenderer) {
      SDL_Surface *barSurface=IMG_Load("assets/baddie.png");
     if(!barSurface){
          printf("Error: Failed to load player image\nSDL_Image Error: '%s'\n", IMG_GetError());        
