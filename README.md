@@ -10,7 +10,7 @@
 -   The game dynamically adjusts the difficulty with each level, increasing the number of adversaries, fires, and time constraints.
 
 ## Installation:
- 1. Ensure you have a C++ compiler and SDL library installed. 
+ 1. Ensure you have a C++ compiler and  the SDL libraries installed. 
  2.  Clone the repository: ``` 
   git clone https://github.com/yourusername/Amazon-Forest.git ```
 
